@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const array = [1, 2, 3, 4, 5, 6, 7];
+    console.log(array)
+
+    function rearrange(array, index, offset) {
+        if (array.length - index <= offset || array.length - index < 0 || index < 0) {
+            console.log("invalid data input")
+        }
+        else {
+
+            if (offset < 0) {
+                array.splice(index + offset, 0, array[index])
+                array.splice(index + 1, 1);
+            } else {
+                array.splice(index + offset + 1, 0, array[index])
+                array.splice(index, 1);
+            }
+            console.log(array)
+        }
+    }
+    rearrange(array, 3, 3)
+</script>
+<!-- <script>
+    let myArray = [1, 2, 3, 3, 3, 4, 5, 6, 7, 8, 9,9,9,9,9,9];
+    let searchItem = [3, 6, 8,9];
+
+    const Exclude = (array, excludeMe) => {
+        let arr = []
+
+        excludeMe.map(ex => {
+            array = array.filter(value => {
+                return value !== ex
+            })
+        })
+
+        console.log(array)
+    }
+
+    Exclude(myArray, searchItem)
+</script> -->
+<!-- <script>
+    const vue = [
+        { name: "phil", age: 1900 },
+        { name: "phil", age: 31 },
+        { name: "phil", age: 22 },
+        { name: "phil", age: 25 },
+        { name: "phil", age: 2 },
+        { name: "phil", age: 256 },
+    ]
+    const arrays = [0, 2, 3, 4, 5]
+    const a =1;
+    const b = 3;
+    const c = 6;
+    const d = 9;
+
+     a > b?  c>d ? console.log("true too"): console.log("not true"): console.log("false")
+
+  console.log  (Math.max(...arrays, 10, 15))
+    function getAverage(array) {
+
+        // return    array.filter((acc,i) => (i < array.length)? (acc.age > array[i].age ? console.log("greater"): console.log("Less")  )   : console.log("greater"))
+        // return    array.filter((acc,i) => (i < array.length && acc.age > array[i+1].age) ? console.log(i) : console.log("anything"))
+            // return Math.round((array.reduce((acc, curr) => (acc + curr.age), 0))/array.length)
+        // return  Math.max(array.map(val => val.age))
+    
+        // }
+        // console.log(a(vue))
+
+        // console.log(a(vue))
+
+        // const age =    array.map(val =>{
+        //         return val.age
+        //     });
+        // const sum = array.reduce((tot, val) => (tot + val.age),0);
+        // const ave = Math.round(sum / array.length)
+        // console.log(ave)
+        // return ave
+    }
+
+    console.log(getAverage(vue))
+</script>
+ -->
+
+</html>

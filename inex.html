@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Geeks</title>
+    <style>
+        h3 {
+            text-align: center;
+            color: black;
+        }
+
+        button {
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>
+        <form action="">
+            <div class="form-group">
+                <label for="Username">Github Username:</label>
+                <input type="text" name="username" id="username">
+            </div>
+            <button>Fetch</button>
+        </form>
+
+        <div class="links"></div>
+    </h3>
+</body>
+<script>
+    const button = document.getElementsByTagName("button");
+    const $username = document.getElementById("username");
+    let username = ""
+    button[0].addEventListener("click", (e) => {
+        e.preventDefault()
+        if ($username.value === "") { }
+        else {
+            username = $username.value
+            FETCH1()
+        }
+
+    })
+
+    async function FETCH1() {
+        try {
+            const Data = await fetch(`https://api.github.com/users/${username}`);
+            const result = await Data.json();
+            console.log(result)
+            fetch(result.repos_url).then(res => { return res.json() }).then(data => {
+                console.log(`Number of repo: ${data.length}`)
+                let allLinks = "";
+                console.log(data)
+                data.map(value => {
+                    let x = value.url.split("/");
+                    let links = document.getElementsByClassName("links")[0];
+                    allLinks += `<a href=${value.html_url}> ${x[x.length-1].toLowerCase()}</a> <br>`
+                    links.innerHTML  = allLinks
+                })
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+        // fetch("https://jsonplaceholder.typicode.com/posts")
+        // .then(res => {
+        //     return res.json()
+        // })
+        // .then(data =>{
+        //     console.log(data)
+        // })
+        // .catch(err =>{
+        //     console.log(err)
+        // })
+    }
+
+    // const FETCH1 = () => {
+    //     const FETCH = new Promise(function (resolve, reject) {
+    //         setTimeout(() => {
+    //             resolve("Say fetched")
+    //         }, 1000)
+    //     })
+    //     FETCH.then((msg) => {
+    //         console.log(msg)
+    //     })
+    // }
+
+</script>
+
+</html>
